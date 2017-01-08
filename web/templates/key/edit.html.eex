@@ -1,0 +1,6 @@
+<h2>Edit key</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: key_path(@conn, :update, @key) %>
+
+<%= link "Back", to: key_path(@conn, :index) %>

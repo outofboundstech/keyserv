@@ -1,0 +1,28 @@
+<h2>Listing keys</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Desc</th>
+      <th>Email</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for key <- @keys do %>
+    <tr>
+      <td><%= key.desc %></td>
+      <td><%= key.email %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: key_path(@conn, :show, key), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: key_path(@conn, :edit, key), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: key_path(@conn, :delete, key), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New key", to: key_path(@conn, :new) %>
