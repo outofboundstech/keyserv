@@ -27,6 +27,8 @@ defmodule Keyserv.Router do
 
     get "/keys", KeyController, :index
     get "/keys/:fingerprint", KeyController, :show
+
+    post "/keys/report", KeyController, :report
   end
 
   scope "/api", Keyserv do

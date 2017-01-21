@@ -15,4 +15,9 @@ defmodule Keyserv.API.KeyController do
     text conn, key.pub
   end
 
+  def report(conn, params) do
+    inspect(params)
+    text conn, "Ok"
+  end
+
 end
