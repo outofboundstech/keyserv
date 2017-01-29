@@ -3,6 +3,19 @@ defmodule Keyserv.KeyController do
 
   alias Keyserv.Key
 
+  plug :authenticate
+
+  defp authenticate(conn, _opts) do
+    if conn.assigns.user do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be signed in to access that page")
+      |> redirect(to: page_path(conn, :index))
+      |> halt()
+    end
+  end
+
   def index(conn, _params) do
     keys = Repo.all(Key)
     render(conn, "index.html", keys: keys)

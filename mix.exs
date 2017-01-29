@@ -19,7 +19,7 @@ defmodule Keyserv.Mixfile do
   def application do
     [mod: {Keyserv, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :exposta]]
+                    :phoenix_ecto, :postgrex, :comeonin, :exposta]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,6 +38,7 @@ defmodule Keyserv.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
+     {:comeonin, "~> 3.0"},
      {:poison, "~> 3.0", override: true},
      {:exposta, github: "marceloomens/ExPosta"},
      {:cors_plug, "~> 1.1", only: :dev}]
