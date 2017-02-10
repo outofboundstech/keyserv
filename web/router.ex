@@ -19,11 +19,18 @@ defmodule Keyserv.Router do
 
     resources "/keys", KeyController
     resources "/users", UserController, only: [:index, :new, :create]
+    resources "/session", SessionController, only: [:new, :create, :delete]
 
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
+  scope "/api", Keyserv do
+    pipe_through :api
+
+    post "/mail/deliver", Mailman, :deliver
+  end
+
   scope "/api", Keyserv.API do
     pipe_through :api
 
@@ -31,11 +38,5 @@ defmodule Keyserv.Router do
     get "/keys/:fingerprint", KeyController, :show
 
     post "/keys/report", KeyController, :report
-  end
-
-  scope "/api", Keyserv do
-    pipe_through :api
-
-    post "/mail/deliver", Mailman, :deliver
   end
 end

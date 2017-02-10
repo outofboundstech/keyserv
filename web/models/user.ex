@@ -22,6 +22,7 @@ defmodule Keyserv.User do
     struct
     |> changeset(params)
     |> cast(params, [:password])
+    |> unique_constraint(:email)
     |> validate_length(:password, min: 8, max: 127)
     |> put_password_hash()
   end
@@ -29,7 +30,8 @@ defmodule Keyserv.User do
   defp put_password_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pwd}} ->
-        put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pwd))
+        # Refactor all decisions on passwords and hashing to auth.ex
+        put_change(changeset, :password_hash, Keyserv.Auth.prepare_pwd(pwd))
       _ ->
         changeset
     end
