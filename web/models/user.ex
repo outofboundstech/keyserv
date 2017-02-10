@@ -4,6 +4,7 @@ defmodule Keyserv.User do
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true
+    field :password_confirmation, :string, virtual: true
     field :password_hash, :string
 
     timestamps()
@@ -21,9 +22,10 @@ defmodule Keyserv.User do
   def registration_changeset(struct, params) do
     struct
     |> changeset(params)
-    |> cast(params, [:password])
+    |> cast(params, [:password, :password_confirmation])
     |> unique_constraint(:email)
     |> validate_length(:password, min: 8, max: 127)
+    |> validate_confirmation(:password)
     |> put_password_hash()
   end
 

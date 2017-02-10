@@ -5,7 +5,7 @@ defmodule Keyserv.Mailman do
 
   alias ExPosta.Message
 
-  def deliver(conn, params=%{"fingerprint" => fingerprint, "from" => from, "subject" => subject, "text" => text}) do
+  def deliver(conn, _params=%{"fingerprint" => fingerprint, "from" => from, "subject" => subject, "text" => text}) do
     # Lookup email address by fingerprint
     key = Repo.get_by!(Key, fingerprint: fingerprint)
     # Send my email (to, subject, text)

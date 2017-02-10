@@ -3,9 +3,9 @@ defmodule Keyserv.KeyController do
 
   alias Keyserv.Key
 
-  plug :authenticate
+  plug :authorized?
 
-  defp authenticate(conn, _opts) do
+  defp authorized?(conn, _opts) do
     if conn.assigns.user do
       conn
     else

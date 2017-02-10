@@ -3,8 +3,6 @@ defmodule Keyserv.SessionController do
 
   import Keyserv.Auth
 
-  alias Keyserv.User
-
   def new(conn, _params) do
     render conn, "new.html"
   end
