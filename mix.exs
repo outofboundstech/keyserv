@@ -19,7 +19,7 @@ defmodule Keyserv.Mixfile do
   def application do
     [mod: {Keyserv, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+                    :phoenix_ecto, :postgrex, :comeonin, :gen_smtp]]
   end
 
   # Specifies which paths to compile per environment.
