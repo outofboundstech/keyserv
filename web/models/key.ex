@@ -25,6 +25,6 @@ defmodule Keyserv.Key do
 
   # Public api
 
-  def as_phrase(key), do: ~s(#{key.desc} <#{key.email}>)
+  def as_phrase(key), do: ~s(\"#{key.desc}\" <#{key.email}>)
 
 end
