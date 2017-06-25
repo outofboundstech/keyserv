@@ -22,4 +22,9 @@ defmodule Keyserv.Key do
     |> unique_constraint(:keyid)
     |> unique_constraint(:fingerprint)
   end
+
+  # Public api
+
+  def as_phrase(key), do: ~s(\"#{key.desc}\" <#{key.email}>)
+
 end
