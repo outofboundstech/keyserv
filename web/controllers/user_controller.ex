@@ -3,6 +3,8 @@ defmodule Keyserv.UserController do
 
   alias Keyserv.User
 
+  plug :put_layout, "legacy.html"
+
   def index(conn, _params) do
     users = Repo.all(User)
     render(conn, "index.html", users: users)

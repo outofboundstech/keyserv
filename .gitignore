@@ -25,3 +25,5 @@ erl_crash.dump
 /config/prod.secret.exs
 
 .DS_Store
+/web/static/assets/theme-dashboard.zip
+/web/static/assets/tether-1.3.3.zip

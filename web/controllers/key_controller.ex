@@ -4,6 +4,7 @@ defmodule Keyserv.KeyController do
   alias Keyserv.Key
 
   plug :authorized?
+  plug :put_layout, "legacy.html"
 
   defp authorized?(conn, _opts) do
     if conn.assigns.user do

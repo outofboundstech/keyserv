@@ -4,41 +4,58 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Hello Keyserv!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <title>CryptoForm keyserv</title>
+
+    <link href="/dist/toolkit-light.min.css" rel="stylesheet">
+    <link href="/dist/application.css" rel="stylesheet">
+
   </head>
-
   <body>
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+      <div class="row">
+        <div class="col-md-3 sidebar">
+          <nav class="sidebar-nav">
+            <div class="sidebar-header">
+              <div class="sidebar-header">
+          <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-md">
+            <span class="sr-only">Toggle nav</span>
+          </button>
+                <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-md">
+                  <span class="sr-only">Toggle nav</span>
+                </button>
+                <a class="sidebar-brand img-responsive" href="<%= page_path(@conn, :index) %>">
+                  <span class="icon icon-fingerprint sidebar-brand-icon"></span>
+                </a>
+            </div>
+            <div class="collapse nav-toggleable-md" id="nav-toggleable-md">
+              <form class="sidebar-form">
+                <input class="form-control" type="text" placeholder="Search...">
+                <button type="submit" class="btn-link">
+                  <span class="icon icon-magnifying-glass"></span>
+                </button>
+              </form>
+              <ul class="nav nav-pills nav-stacked flex-column">
+                <li class="nav-header">keyserv</li>
+                <li class="nav-item">
+                  <%= link "Dashboard", to: page_path(@conn, :index), class: "nav-link active" %>
+                </li>
+                <li class="nav-item">
+                  <%= link "Public keys", to: key_path(@conn, :index), class: "nav-link" %>
+                </li>
+              </ul>
+              <hr class="visible-xs mt-3">
+            </div>
+          </nav>
+        </div>
+        <div class="col-md-9 content">
+          <%= render @view_module, @view_template, assigns %>
+        </div>
+      </div>
+    </div>
 
-      <ol class="breadcrumb text-right">
-      <%= if @user do %>
-        <li><%= link "Logout", to: session_path(@conn, :delete, @user.id), method: "delete" %></li>
-      <% else %>
-        <li><%= link "Register", to: user_path(@conn, :new) %></li>
-        <li><%= link "Login", to: session_path(@conn, :new) %></li>
-      <% end %>
-      </ol>      
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
-
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="/dist/jquery-2.1.4.min.js"></script>
+    <script src="/dist/tether.min.js"></script>
+    <script src="/dist/toolkit.min.js"></script>
   </body>
 </html>

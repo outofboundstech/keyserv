@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CryptoForm keyserv</title>
+
+    <link href="/dist/toolkit-light.min.css" rel="stylesheet">
+    <link href="/dist/application.css" rel="stylesheet">
+    <link href="/dist/session.css" rel="stylesheet">
+
+  </head>
+  <body class="session">
+    <div class="container">
+
+      <%= render @view_module, @view_template, assigns %>
+
+    </div>
+  </body>
+</html>

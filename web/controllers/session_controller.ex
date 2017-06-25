@@ -3,6 +3,8 @@ defmodule Keyserv.SessionController do
 
   import Keyserv.Auth
 
+  plug :put_layout, "session.html"
+
   def new(conn, _params) do
     render conn, "new.html"
   end
