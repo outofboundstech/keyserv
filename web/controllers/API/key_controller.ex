@@ -9,13 +9,14 @@ defmodule Keyserv.API.KeyController do
   end
 
   def show(conn, %{"fingerprint" => fingerprint}) do
-    # Are by parameters clean?
+    # Are my parameters clean?
     # Throws Ecto.NoResultError
     key = Repo.get_by!(Key, fingerprint: fingerprint)
     text conn, key.pub
   end
 
   def report(conn, params) do
+    # This is a stub
     inspect(params)
     text conn, "Ok"
   end

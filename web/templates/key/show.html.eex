@@ -3,11 +3,6 @@
 <ul>
 
   <li>
-    <strong>Keyid:</strong>
-    <%= @key.keyid %>
-  </li>
-
-  <li>
     <strong>Desc:</strong>
     <%= @key.desc %>
   </li>
