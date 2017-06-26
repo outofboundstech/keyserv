@@ -1,26 +1,51 @@
-<h2>Listing users</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Email</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for user <- @users do %>
-    <tr>
-      <td><%= user.email %></td>
-
-      <td class="text-right">
-        <%# <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
-        <%# <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
-        <%# <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<%= link "New user", to: user_path(@conn, :new) %>
+<div class="hr-divider mt-5 mb-3">
+  <h3 class="hr-divider-content hr-divider-heading">All users</h3>
+</div>
+<div class="flextable table-actions">
+  <div class="flextable-item flextable-primary">
+    <div class="btn-toolbar-item input-with-icon">
+      <input type="text" class="form-control input-block" placeholder="Search users">
+      <span class="icon icon-magnifying-glass"></span>
+    </div>
+  </div>
+  <div class="flextable-item">
+    <div class="btn-group">
+      <a class="btn btn-outline-primary" href="<%= user_path(@conn, :new) %>">
+        <span class="icon icon-add-to-list"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table" data-sort="table">
+    <thead>
+      <tr>
+        <th class="header">#</th>
+        <th class="header">E-mail</th>
+        <th class="header">Added</th>
+        <th class="header">Modified</th>
+        <th class="header">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for user <- @users do %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+        <td><%= user.inserted_at %></td>
+        <td><%= user.updated_at %></td>
+        <td>
+          <div class="btn-group">
+            <a class="btn btn-outline-primary btn-xs" href="#">
+              <span class="icon icon-edit"></span>
+            </a>
+            <a class="btn btn-outline-danger btn-xs" href="#">
+              <span class="icon icon-cross"></span>
+            </a>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

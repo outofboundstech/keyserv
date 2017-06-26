@@ -17,7 +17,7 @@ defmodule Keyserv.Router do
   scope "/", Keyserv do
     pipe_through :browser # Use the default browser stack
 
-    resources "/keys", KeyController
+    resources "/keys", KeyController, except: [:show]
     resources "/users", UserController, only: [:index, :new, :create]
     resources "/session", SessionController, only: [:new, :create, :delete]
 

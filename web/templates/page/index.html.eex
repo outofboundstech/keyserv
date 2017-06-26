@@ -1,10 +1,21 @@
-<div class="dashhead">
-  <div class="dashhead-titles">
-    <h6 class="dashhead-subtitle">CryptoForm keyserv</h6>
-    <h2 class="dashhead-title">Dashboard</h2>
-  </div>
-
-  <div class="btn-toolbar dashhead-toolbar"></div>
+<div class="hr-divider mt-5 mb-3">
+  <h3 class="hr-divider-content hr-divider-heading">Welcome</h3>
 </div>
-
-<hr class="mt-3">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="statcard statcard-primary p-4">
+      <h3 class="statcard-number">
+        &nbsp;
+      </h3>
+      <span class="statcard-desc">E-mails served</span>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="statcard statcard-success p-4">
+      <h3 class="statcard-number">
+        &nbsp;
+      </h3>
+      <span class="statcard-desc">Server uptime</span>
+    </div>
+  </div>
+</div>

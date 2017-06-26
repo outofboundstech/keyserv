@@ -1,7 +1,9 @@
 defmodule Keyserv.Auth do
-  import Plug.Conn
 
+  import Plug.Conn
   import Comeonin.Bcrypt
+
+  alias Keyserv.User
 
   def init(opts) do
     Keyword.fetch!(opts, :repo)
@@ -9,13 +11,27 @@ defmodule Keyserv.Auth do
 
   def call(conn, repo) do
     user_id = get_session(conn, :user_id)
-    user = user_id && repo.get(Keyserv.User, user_id)
+    user = user_id && repo.get(User, user_id)
     assign(conn, :user, user)
+  end
+
+  def authentication do
+    quote do
+      def authorized?(conn, _opts) do
+        if conn.assigns.user do
+          conn
+        else
+          conn
+          |> redirect(to: session_path(conn, :new))
+          |> halt()
+        end
+      end
+    end
   end
 
   def authenticate(conn, email, pwd, opts) do
     repo = Keyword.fetch!(opts, :repo)
-    user = repo.get_by(Keyserv.User, email: email)
+    user = repo.get_by(User, email: email)
 
     cond do
       user && checkpw(pwd, user.password_hash) ->
@@ -41,5 +57,12 @@ defmodule Keyserv.Auth do
 
   def prepare_pwd(pwd) do
     hashpwsalt(pwd)
+  end
+
+  @doc """
+  When used, dispatch to the appropriate controller/view/etc.
+  """
+  defmacro __using__(which) when is_atom(which) do
+    apply(__MODULE__, which, [])
   end
 end
