@@ -7,8 +7,7 @@
 
     <title>CryptoForm keyserv</title>
 
-    <link href="/dist/toolkit-light.min.css" rel="stylesheet">
-    <link href="/dist/application.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 
   </head>
   <body>
@@ -73,9 +72,6 @@
       </div>
     </div>
 
-    <script src="/dist/jquery-2.1.4.min.js"></script>
-    <script src="/dist/tether.min.js"></script>
-    <script src="/dist/toolkit.min.js"></script>
     <script src="/js/app.js"></script>
   </body>
 </html>
