@@ -17,7 +17,7 @@ defmodule Keyserv.SessionController do
         |> redirect(to: page_path(conn, :index))
       {:error, _reason, conn} ->
         conn
-        |> put_flash(:error, "Invalid username or password")
+        |> put_flash(:error, "Invalid username or password.")
         |> render("new.html")
     end
   end

@@ -62,6 +62,8 @@
             </div>
           </div>
 
+          <%= messages(@conn) %>
+
           <%= render @view_module, @view_template, assigns %>
 
           <div class="hr-divider mt-5 mb-3">

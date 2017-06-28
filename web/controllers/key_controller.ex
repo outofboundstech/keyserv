@@ -22,7 +22,7 @@ defmodule Keyserv.KeyController do
     case Repo.insert(changeset) do
       {:ok, _key} ->
         conn
-        |> put_flash(:info, "Key created successfully.")
+        |> put_flash(:success, "Key created successfully.")
         |> redirect(to: key_path(conn, :index))
       {:error, changeset} ->
         render conn, "new.html", defaults(conn, changeset: changeset)
@@ -42,7 +42,7 @@ defmodule Keyserv.KeyController do
     case Repo.update(changeset) do
       {:ok, key} ->
         conn
-        |> put_flash(:info, "Key updated successfully.")
+        |> put_flash(:success, "Key updated successfully.")
         |> redirect(to: key_path(conn, :show, key))
       {:error, changeset} ->
         render conn, "edit.html", defaults(conn, key: key, changeset: changeset)
@@ -57,7 +57,7 @@ defmodule Keyserv.KeyController do
     Repo.delete!(key)
 
     conn
-    |> put_flash(:info, "Key deleted successfully.")
+    |> put_flash(:success, "Key deleted successfully.")
     |> redirect(to: key_path(conn, :index))
   end
 
