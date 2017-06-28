@@ -2,8 +2,8 @@
   <h6 class="form-signin-heading">CryptoForm keyserv</h6>
   <h2 class="form-signin-heading">Please sign in</h2>
   <div class="form-group">
-    <%= label f, :email, class: "sr-only" %>
-    <%= text_input f, :email, placeholder: "Email address", required: True, autofocus: True, class: "form-control" %>
+    <%= label f, :email, "E-mail address", class: "sr-only" %>
+    <%= text_input f, :email, placeholder: "E-mail address", required: True, autofocus: True, class: "form-control" %>
     <%= error_tag f, :email %>
   </div>
   <div class="form-group">

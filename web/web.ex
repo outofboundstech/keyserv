@@ -52,6 +52,14 @@ defmodule Keyserv.Web do
       import Keyserv.Router.Helpers
       import Keyserv.ErrorHelpers
       import Keyserv.Gettext
+
+      def date(%NaiveDateTime{day: day, month: month, year: year}) do
+        "#{day}/#{month}/#{year}"
+      end
+
+      def time(%NaiveDateTime{hour: hour, minute: min, second: sec}) do
+        "#{hour}:#{min}.#{sec}"
+      end
     end
   end
 

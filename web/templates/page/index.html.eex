@@ -7,7 +7,7 @@
       <h3 class="statcard-number">
         &nbsp;
       </h3>
-      <span class="statcard-desc">E-mails served</span>
+      <span class="statcard-desc">Server uptime</span>
     </div>
   </div>
   <div class="col-sm-6">
@@ -15,7 +15,7 @@
       <h3 class="statcard-number">
         &nbsp;
       </h3>
-      <span class="statcard-desc">Server uptime</span>
+      <span class="statcard-desc">E-mails served</span>
     </div>
   </div>
 </div>

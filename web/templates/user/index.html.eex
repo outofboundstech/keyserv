@@ -32,16 +32,20 @@
       <tr>
         <td><%= user.id %></td>
         <td><%= user.email %></td>
-        <td><%= user.inserted_at %></td>
-        <td><%= user.updated_at %></td>
+        <td><%= date user.inserted_at %></td>
+        <td><%= date user.updated_at %></td>
         <td>
           <div class="btn-group">
-            <a class="btn btn-outline-primary btn-xs" href="#">
-              <span class="icon icon-edit"></span>
-            </a>
-            <a class="btn btn-outline-danger btn-xs" href="#">
-              <span class="icon icon-cross"></span>
-            </a>
+            <%= # link ( tag :span, class: "icon icon-edit" ),
+              # to: user_path(@conn, :edit, user),
+              # class: "btn btn-outline-primary btn-xs"
+            %>
+            <%= # link ( tag :span, class: "icon icon-cross" ),
+              # to: user_path(@conn, :delete, user),
+              # method: :delete,
+              # data: [confirm: "Are you sure?"],
+              # class: "btn btn-outline-danger btn-xs"
+            %>
           </div>
         </td>
       </tr>

@@ -34,16 +34,20 @@
         <td><%= key.id %></td>
         <td><%= key.desc %></td>
         <td><%= key.email %></td>
-        <td><%= key.inserted_at %></td>
-        <td><%= key.updated_at %></td>
+        <td><%= date key.inserted_at %></td>
+        <td><%= date key.updated_at %></td>
         <td>
           <div class="btn-group">
-            <a class="btn btn-outline-primary btn-xs" href="<%= key_path(@conn, :edit, key) %>">
-              <span class="icon icon-edit"></span>
-            </a>
-            <a class="btn btn-outline-danger btn-xs" href="#">
-              <span class="icon icon-cross"></span>
-            </a>
+            <%= link ( tag :span, class: "icon icon-edit" ),
+              to: key_path(@conn, :edit, key),
+              class: "btn btn-outline-primary btn-xs"
+            %>
+            <%= link ( tag :span, class: "icon icon-cross" ),
+              to: key_path(@conn, :delete, key),
+              method: :delete,
+              data: [confirm: "Are you sure?"],
+              class: "btn btn-outline-danger btn-xs"
+            %>
           </div>
         </td>
       </tr>
