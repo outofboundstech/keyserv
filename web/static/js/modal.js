@@ -64,7 +64,6 @@ function willHandleConfirmLinkClick(modal, message) {
         modal.find('.modal-body p').text(message);
       }
       modal.find('.btn-primary').click(function(e) {
-        modal.modal('hide');
         resolve();
       });
     });
