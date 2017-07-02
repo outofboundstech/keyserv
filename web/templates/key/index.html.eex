@@ -45,7 +45,7 @@
             <%= link ( tag :span, class: "icon icon-cross" ),
               to: key_path(@conn, :delete, key),
               method: :delete,
-              data: [confirm: "Are you sure?"],
+              data: [confirm: "Are you sure you want to delete the key for #{key.desc}?"],
               class: "btn btn-outline-danger btn-xs"
             %>
           </div>
