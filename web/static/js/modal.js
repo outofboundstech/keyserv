@@ -26,7 +26,7 @@ function didHandleSubmitLinkClick(element) {
     if (isLinkToSubmitParent(element)) {
       var message = element.getAttribute('data-confirm');
       if (typeof(window.jQuery) != undefined && $('#phoenix-bs-modal').length) {
-        willHandleConfirmLinkClick($('#phoenix-bs-modal'), message).then(function (e) {
+        willHandleConfirmLinkClick($('#phoenix-bs-modal'), element, function() {
           getClosestForm(element).submit();
         });
       } else if (message === null || confirm(message)) {
@@ -48,28 +48,30 @@ window.addEventListener('click', function (event) {
 }, false);
 
 /**
-* willHandleConfirmLinkClick (modal, message) takes a jQuery DOM element and
-*   a message string (optional). modal is expected to conform loosely to the
-*   Bootstrap modal component described at
-*   https://getbootstrap.com/javascript/#modals
-*
-* willHandleConfirmLinkClick return a Promise object that resolves if and only
-*   the user confirms his/her input by clicking the '.btn-primary' button in the
+* willHandleConfirmLinkClick (modal, element, callback) takes (1) a jQuery DOM
+*   element that conforms loosely to the Bootstrap modal component described at
+*   https://getbootstrap.com/javascript/#modals, (2) the DOM element that fired
+*   the event that requires confirmation, and (3) a callback that is called
+*   after the user confirms his/her action using the .btn-primary button in the
 *   modal dialogue.
 */
-function willHandleConfirmLinkClick(modal, message) {
-  return new Promise((resolve, reject) => {
-    modal.on('show.bs.modal', function(e) {
-      if (message !== null) {
-        modal.find('.modal-body p').text(message);
-      }
-      modal.find('.btn-primary').click(function(e) {
-        resolve();
-      });
+function willHandleConfirmLinkClick(modal, element, callback) {
+  var regular = modal.find('.modal-body p').text();
+  var message = element.getAttribute('data-confirm');
+  if (message === null) return callback();
+  // Prepare to show the modal
+  modal.on('show.bs.modal', function(e) {
+    modal.find('.modal-body p').text(message);
+    modal.find('.btn-primary').click(function(e) {
+      callback();
+      modal.modal('toggle');
     });
-    modal.on('hide.bs.modal', function(e) {
-      modal.find('.btn-primary').off('click');
-    });
-    modal.modal('show');
   });
+  // Return the modal to the default state when hiding
+  modal.on('hide.bs.modal', function(e) {
+    modal.find('.btn-primary').off('click');
+    modal.find('.modal-body p').text(regular);
+  });
+  // Toggle the modal
+  modal.modal('toggle');
 }
