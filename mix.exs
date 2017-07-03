@@ -40,7 +40,7 @@ defmodule Keyserv.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 3.0"},
      {:poison, "~> 3.0", override: true},
-     {:cors_plug, "~> 1.1", only: :dev},
+     {:cors_plug, "~> 1.3"},
      {:gen_smtp, "~> 0.12.0"}]
   end
 

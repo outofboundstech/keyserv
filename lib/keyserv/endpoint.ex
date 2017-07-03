@@ -38,8 +38,5 @@ defmodule Keyserv.Endpoint do
     key: "_keyserv_key",
     signing_salt: "RjBQidyd"
 
-  # Not for production...
-  plug CORSPlug
-
   plug Keyserv.Router
 end

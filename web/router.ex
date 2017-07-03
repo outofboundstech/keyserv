@@ -11,6 +11,7 @@ defmodule Keyserv.Router do
   end
 
   pipeline :api do
+    plug CORSPlug, origin: ["http://localhost:4000", "http://localhost:3333"]
     plug :accepts, ["json"]
   end
 
