@@ -11,6 +11,8 @@ defmodule Keyserv.Auth do
 
   def call(conn, repo) do
     user_id = get_session(conn, :user_id)
+    # Is it worth assigning :user_id to conn and defer the repo.get call
+    # until it's absolutely necessary?
     user = user_id && repo.get(User, user_id)
     assign(conn, :user, user)
   end
