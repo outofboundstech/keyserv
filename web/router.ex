@@ -11,7 +11,7 @@ defmodule Keyserv.Router do
   end
 
   pipeline :api do
-    plug CORSPlug, origin: ["http://localhost:4000", "http://localhost:3333"]
+    plug Keyserv.Cors
     plug :accepts, ["json"]
   end
 
@@ -30,6 +30,7 @@ defmodule Keyserv.Router do
     pipe_through :api
 
     post "/mail/deliver", Mailman, :deliver
+    options "/mail/deliver", Mailman, :options
   end
 
   scope "/api", Keyserv.API do
