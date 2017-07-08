@@ -1,0 +1,28 @@
+<div class="hr-divider mt-5 mb-3">
+  <h3 class="hr-divider-content hr-divider-heading">Site information</h3>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="statcard statcard-primary p-4">
+      <h3 class="statcard-number">
+        <%= "#{date @site.inserted_at} #{time @site.inserted_at}" %>
+      </h3>
+      <span class="statcard-desc">Created</span>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="statcard statcard-success p-4">
+      <h3 class="statcard-number">
+        <%= "#{date @site.updated_at} #{time @site.updated_at}" %>
+      </h3>
+      <span class="statcard-desc">Modified</span>
+    </div>
+  </div>
+</div>
+
+<div class="hr-divider mt-5 mb-3">
+  <h3 class="hr-divider-content hr-divider-heading">Edit site</h3>
+</div>
+
+<%= render "form.html", changeset: @changeset,
+                        action: site_path(@conn, :update, @site) %>

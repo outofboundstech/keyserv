@@ -56,10 +56,13 @@
                   <%= link "Dashboard", to: page_path(@conn, :index), class: nav_cls(@nav_link, :dashboard) %>
                 </li>
                 <li class="nav-item">
-                  <%= link "Public keys", to: key_path(@conn, :index), class: nav_cls(@nav_link, :keys) %>
+                  <%= link "Sites", to: site_path(@conn, :index), class: nav_cls(@nav_link, :sites) %>
                 </li>
                 <li class="nav-item">
                   <%= link "Users", to: user_path(@conn, :index), class: nav_cls(@nav_link, :users) %>
+                </li>
+                <li class="nav-item">
+                  <%= link "Public keys", to: key_path(@conn, :index), class: nav_cls(@nav_link, :keys) %>
                 </li>
               </ul>
               <hr class="visible-xs mt-3">
