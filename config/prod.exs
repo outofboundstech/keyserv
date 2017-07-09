@@ -14,7 +14,10 @@ use Mix.Config
 config :keyserv, Keyserv.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4000],
   url: [host: "keyserv.451labs.org", port: 443],
-  cache_static_manifest: "priv/static/manifest.json"
+  root: ".",
+  cache_static_manifest: "priv/static/manifest.json",
+  server: true,
+  version: Mix.Project.config[:version]
 
 config :keyserv, Keyserv.Cors,
   origin: ["https://keyserv.451labs.org", "https://www.451labs.org", "https://451labs.org"]
@@ -51,7 +54,7 @@ config :logger, level: :info
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start the server for all endpoints:
 #
-#     config :phoenix, :serve_endpoints, true
+config :phoenix, :serve_endpoints, true
 #
 # Alternatively, you can configure exactly which server to
 # start per endpoint:

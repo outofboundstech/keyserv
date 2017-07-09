@@ -3,7 +3,7 @@ defmodule Keyserv.Mixfile do
 
   def project do
     [app: :keyserv,
-     version: "0.0.1",
+     version: "0.1.0",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -41,7 +41,8 @@ defmodule Keyserv.Mixfile do
      {:comeonin, "~> 3.0"},
      {:poison, "~> 3.0", override: true},
      {:cors_plug, "~> 1.3"},
-     {:gen_smtp, "~> 0.12.0"}]
+     {:gen_smtp, "~> 0.12.0"},
+     {:exrm, "~> 1.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
