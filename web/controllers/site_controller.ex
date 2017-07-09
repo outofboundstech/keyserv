@@ -37,7 +37,7 @@ defmodule Keyserv.SiteController do
     changeset = Site.changeset(site, site_params)
 
     case Repo.update(changeset) do
-      {:ok, site} ->
+      {:ok, _site} ->
         conn
         |> put_flash(:info, "Site updated successfully.")
         |> redirect(to: site_path(conn, :index))
@@ -58,7 +58,7 @@ defmodule Keyserv.SiteController do
     |> redirect(to: site_path(conn, :index))
   end
 
-  defp defaults(conn, assigns \\ []) do
+  defp defaults(_conn, assigns \\ []) do
     assigns
     |> Keyword.put(:title, "Sites")
     |> Keyword.put(:nav_link, :sites)

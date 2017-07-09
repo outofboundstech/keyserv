@@ -16,6 +16,9 @@ config :keyserv, Keyserv.Endpoint,
   url: [host: "keyserv.451labs.org", port: 443],
   cache_static_manifest: "priv/static/manifest.json"
 
+config :keyserv, Keyserv.Cors,
+  origin: ["https://keyserv.451labs.org", "https://www.451labs.org", "https://451labs.org"]
+
 # Do not print debug messages in production
 config :logger, level: :info
 

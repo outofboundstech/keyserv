@@ -32,5 +32,6 @@
 
   <div class="form-group">
     <%= submit "Save", class: "btn btn-primary" %>
+    <a href="<%= key_path(@conn, :index) %>" class="btn btn-secondary" role="button">Cancel</a>
   </div>
 <% end %>

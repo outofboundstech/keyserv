@@ -8,7 +8,7 @@ defmodule Keyserv.PageController do
     render conn, "index.html", defaults(conn)
   end
 
-  defp defaults(conn, assigns \\ []) do
+  defp defaults(_conn, assigns \\ []) do
     assigns
     |> Keyword.put(:title, "Dashboard")
     |> Keyword.put(:nav_link, :dashboard)
