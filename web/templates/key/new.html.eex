@@ -1,6 +1,7 @@
-<h2>New key</h2>
+<div class="hr-divider mt-5 mb-3">
+  <h3 class="hr-divider-content hr-divider-heading">Add key</h3>
+</div>
 
-<%= render "form.html", changeset: @changeset,
+<%= render "form.html", conn: @conn,
+                        changeset: @changeset,
                         action: key_path(@conn, :create) %>
-
-<%= link "Back", to: key_path(@conn, :index) %>

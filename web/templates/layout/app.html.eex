@@ -4,32 +4,96 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Hello Keyserv!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <title>CryptoForm keyserv</title>
+
+    <link href="/css/app.css" rel="stylesheet">
+
   </head>
-
   <body>
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+      <div class="modal fade" id="phoenix-bs-modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Please confirm</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Yes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 sidebar">
+          <nav class="sidebar-nav">
+            <div class="sidebar-header">
+              <div class="sidebar-header">
+                <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-md">
+                  <span class="sr-only">Toggle nav</span>
+                </button>
+                <a class="sidebar-brand img-responsive" href="<%= page_path(@conn, :index) %>">
+                  <span class="icon icon-fingerprint sidebar-brand-icon"></span>
+                </a>
+            </div>
+            <div class="collapse nav-toggleable-md" id="nav-toggleable-md">
+              <form class="sidebar-form">
+                <input class="form-control" type="text" placeholder="Search...">
+                <button type="submit" class="btn-link">
+                  <span class="icon icon-magnifying-glass"></span>
+                </button>
+              </form>
+              <ul class="nav nav-pills nav-stacked flex-column">
+                <li class="nav-header">keyserv</li>
+                <li class="nav-item">
+                  <%= link "Dashboard", to: page_path(@conn, :index), class: nav_cls(@nav_link, :dashboard) %>
+                </li>
+                <li class="nav-item">
+                  <%= link "Sites", to: site_path(@conn, :index), class: nav_cls(@nav_link, :sites) %>
+                </li>
+                <li class="nav-item">
+                  <%= link "Users", to: user_path(@conn, :index), class: nav_cls(@nav_link, :users) %>
+                </li>
+                <li class="nav-item">
+                  <%= link "Public keys", to: key_path(@conn, :index), class: nav_cls(@nav_link, :keys) %>
+                </li>
+              </ul>
+              <hr class="visible-xs mt-3">
+            </div>
+          </nav>
+        </div>
+        <div class="col-md-9 content">
+          <div class="dashhead">
+            <div class="dashhead-titles">
+              <h6 class="dashhead-subtitle">CryptoForm keyserv</h6>
+              <h2 class="dashhead-title"><%= @title %></h2>
+            </div>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+            <div class="btn-toolbar dashhead-toolbar">
+              <div class="btn-toolbar-item">
+                <%= link "Sign out", to: session_path(@conn, :delete, @user.id), method: "delete" %>
+              </div>
+            </div>
+          </div>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+          <%= messages(@conn) %>
 
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+          <%= render @view_module, @view_template, assigns %>
+
+          <div class="hr-divider mt-5 mb-3">
+            <h3 class="hr-divider-content hr-divider-heading">CryptoForm keyserv</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/app.js"></script>
   </body>
 </html>

@@ -3,7 +3,6 @@ defmodule Keyserv.Key do
 
   @derive {Poison.Encoder, only: [:keyid, :fingerprint, :desc]}
   schema "keys" do
-    field :keyid, :string
     field :fingerprint, :string
     field :pub, :string
     field :desc, :string
@@ -17,9 +16,13 @@ defmodule Keyserv.Key do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:keyid, :fingerprint, :pub, :desc, :email])
-    |> validate_required([:keyid, :fingerprint, :pub, :desc, :email])
-    |> unique_constraint(:keyid)
+    |> cast(params, [:fingerprint, :pub, :desc, :email])
+    |> validate_required([:fingerprint, :pub, :desc, :email])
     |> unique_constraint(:fingerprint)
   end
+
+  # Public api
+
+  def as_phrase(key), do: ~s(\"#{key.desc}\" <#{key.email}>)
+
 end

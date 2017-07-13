@@ -1,16 +1,19 @@
 defmodule Keyserv.KeyController do
   use Keyserv.Web, :controller
+  use Keyserv.Auth, :authentication
 
   alias Keyserv.Key
 
+  plug :authorized?
+
   def index(conn, _params) do
     keys = Repo.all(Key)
-    render(conn, "index.html", keys: keys)
+    render conn, "index.html", defaults(conn, keys: keys)
   end
 
   def new(conn, _params) do
     changeset = Key.changeset(%Key{})
-    render(conn, "new.html", changeset: changeset)
+    render conn, "new.html", defaults(conn, changeset: changeset)
   end
 
   def create(conn, %{"key" => key_params}) do
@@ -19,22 +22,17 @@ defmodule Keyserv.KeyController do
     case Repo.insert(changeset) do
       {:ok, _key} ->
         conn
-        |> put_flash(:info, "Key created successfully.")
+        |> put_flash(:success, "Key created successfully.")
         |> redirect(to: key_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render conn, "new.html", defaults(conn, changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    key = Repo.get!(Key, id)
-    render(conn, "show.html", key: key)
   end
 
   def edit(conn, %{"id" => id}) do
     key = Repo.get!(Key, id)
     changeset = Key.changeset(key)
-    render(conn, "edit.html", key: key, changeset: changeset)
+    render conn, "edit.html", defaults(conn, key: key, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "key" => key_params}) do
@@ -44,10 +42,10 @@ defmodule Keyserv.KeyController do
     case Repo.update(changeset) do
       {:ok, key} ->
         conn
-        |> put_flash(:info, "Key updated successfully.")
+        |> put_flash(:success, "Key updated successfully.")
         |> redirect(to: key_path(conn, :show, key))
       {:error, changeset} ->
-        render(conn, "edit.html", key: key, changeset: changeset)
+        render conn, "edit.html", defaults(conn, key: key, changeset: changeset)
     end
   end
 
@@ -59,7 +57,13 @@ defmodule Keyserv.KeyController do
     Repo.delete!(key)
 
     conn
-    |> put_flash(:info, "Key deleted successfully.")
+    |> put_flash(:success, "Key deleted successfully.")
     |> redirect(to: key_path(conn, :index))
+  end
+
+  defp defaults(_conn, assigns \\ []) do
+    assigns
+    |> Keyword.put(:title, "Public keys")
+    |> Keyword.put(:nav_link, :keys)
   end
 end

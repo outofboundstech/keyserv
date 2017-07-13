@@ -1,28 +1,57 @@
-<h2>Listing keys</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Desc</th>
-      <th>Email</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for key <- @keys do %>
-    <tr>
-      <td><%= key.desc %></td>
-      <td><%= key.email %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: key_path(@conn, :show, key), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: key_path(@conn, :edit, key), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: key_path(@conn, :delete, key), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<%= link "New key", to: key_path(@conn, :new) %>
+<div class="hr-divider mt-5 mb-3">
+  <h3 class="hr-divider-content hr-divider-heading">All keys</h3>
+</div>
+<div class="flextable table-actions">
+  <div class="flextable-item flextable-primary">
+    <div class="btn-toolbar-item input-with-icon">
+      <input type="text" class="form-control input-block" placeholder="Search keys">
+      <span class="icon icon-magnifying-glass"></span>
+    </div>
+  </div>
+  <div class="flextable-item">
+    <div class="btn-group">
+      <a class="btn btn-outline-primary" href="<%= key_path(@conn, :new) %>">
+        <span class="icon icon-add-to-list"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table" data-sort="table">
+    <thead>
+      <tr>
+        <th class="header">#</th>
+        <th class="header">Description</th>
+        <th class="header">E-mail address</th>
+        <th class="header">Added</th>
+        <th class="header">Modified</th>
+        <th class="header">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for key <- @keys do %>
+      <tr>
+        <td><%= key.id %></td>
+        <td><%= key.desc %></td>
+        <td><%= key.email %></td>
+        <td><%= date key.inserted_at %></td>
+        <td><%= date key.updated_at %></td>
+        <td>
+          <div class="btn-group">
+            <%= link ( tag :span, class: "icon icon-edit" ),
+              to: key_path(@conn, :edit, key),
+              class: "btn btn-outline-primary btn-xs"
+            %>
+            <%= link ( tag :span, class: "icon icon-cross" ),
+              to: key_path(@conn, :delete, key),
+              method: :delete,
+              data: [confirm: "Are you sure you want to delete the key for #{key.desc}?"],
+              class: "btn btn-outline-danger btn-xs"
+            %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -3,7 +3,6 @@ defmodule Keyserv.Repo.Migrations.CreateKey do
 
   def change do
     create table(:keys) do
-      add :keyid, :string
       add :fingerprint, :string
       add :pub, :text
       add :desc, :string
@@ -11,7 +10,6 @@ defmodule Keyserv.Repo.Migrations.CreateKey do
 
       timestamps()
     end
-    create unique_index(:keys, [:keyid])
     create unique_index(:keys, [:fingerprint])
 
   end
