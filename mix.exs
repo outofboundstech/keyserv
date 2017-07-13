@@ -19,7 +19,7 @@ defmodule Keyserv.Mixfile do
   def application do
     [mod: {Keyserv, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin, :gen_smtp]]
+                    :phoenix_ecto, :postgrex, :comeonin, :cors_plug, :gen_smtp]]
   end
 
   # Specifies which paths to compile per environment.
@@ -42,7 +42,7 @@ defmodule Keyserv.Mixfile do
      {:poison, "~> 3.0", override: true},
      {:cors_plug, "~> 1.3"},
      {:gen_smtp, "~> 0.12.0"},
-     {:exrm, "~> 1.0"}]
+     {:distillery, "~> 1.4", runtime: false}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
