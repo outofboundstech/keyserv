@@ -1,7 +1,7 @@
 <div class="hr-divider mt-5 mb-3">
-  <h3 class="hr-divider-content hr-divider-heading">Add key</h3>
+  <h3 class="hr-divider-content hr-divider-heading">Add site</h3>
 </div>
 
 <%= render "form.html", conn: @conn,
                         changeset: @changeset,
-                        action: key_path(@conn, :create) %>
+                        action: site_path(@conn, :create) %>

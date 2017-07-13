@@ -61,7 +61,7 @@ defmodule Keyserv.KeyController do
     |> redirect(to: key_path(conn, :index))
   end
 
-  defp defaults(conn, assigns \\ []) do
+  defp defaults(_conn, assigns \\ []) do
     assigns
     |> Keyword.put(:title, "Public keys")
     |> Keyword.put(:nav_link, :keys)

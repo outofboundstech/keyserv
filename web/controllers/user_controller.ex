@@ -30,7 +30,7 @@ defmodule Keyserv.UserController do
     end
   end
 
-  defp defaults(conn, assigns \\ []) do
+  defp defaults(_conn, assigns \\ []) do
     assigns
     |> Keyword.put(:title, "Users")
     |> Keyword.put(:nav_link, :users)

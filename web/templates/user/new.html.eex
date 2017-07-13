@@ -2,5 +2,6 @@
   <h3 class="hr-divider-content hr-divider-heading">Add user</h3>
 </div>
 
-<%= render "form.html", changeset: @changeset,
+<%= render "form.html", conn: @conn,
+                        changeset: @changeset,
                         action: user_path(@conn, :create) %>

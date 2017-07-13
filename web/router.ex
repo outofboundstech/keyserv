@@ -11,14 +11,16 @@ defmodule Keyserv.Router do
   end
 
   pipeline :api do
+    plug Keyserv.Cors
     plug :accepts, ["json"]
   end
 
   scope "/", Keyserv do
     pipe_through :browser # Use the default browser stack
 
-    resources "/keys", KeyController, except: [:show]
+    resources "/sites", SiteController, except: [:show]
     resources "/users", UserController, only: [:index, :new, :create]
+    resources "/keys", KeyController, except: [:show]
     resources "/session", SessionController, only: [:new, :create, :delete]
 
     get "/", PageController, :index
@@ -29,6 +31,7 @@ defmodule Keyserv.Router do
     pipe_through :api
 
     post "/mail/deliver", Mailman, :deliver
+    options "/mail/deliver", Mailman, :options
   end
 
   scope "/api", Keyserv.API do

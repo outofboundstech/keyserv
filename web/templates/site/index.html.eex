@@ -1,0 +1,57 @@
+<div class="hr-divider mt-5 mb-3">
+  <h3 class="hr-divider-content hr-divider-heading">All sites</h3>
+</div>
+<div class="flextable table-actions">
+  <div class="flextable-item flextable-primary">
+    <div class="btn-toolbar-item input-with-icon">
+      <input type="text" class="form-control input-block" placeholder="Search keys">
+      <span class="icon icon-magnifying-glass"></span>
+    </div>
+  </div>
+  <div class="flextable-item">
+    <div class="btn-group">
+      <a class="btn btn-outline-primary" href="<%= site_path(@conn, :new) %>">
+        <span class="icon icon-add-to-list"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table" data-sort="table">
+    <thead>
+      <tr>
+        <th class="header">#</th>
+        <th class="header">Name</th>
+        <th class="header">Hostname</th>
+        <th class="header">Added</th>
+        <th class="header">Modified</th>
+        <th class="header">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for site <- @sites do %>
+      <tr>
+        <td><%= site.id %></td>
+        <td><%= site.name %></td>
+        <td><%= site.hostname %></td>
+        <td><%= date site.inserted_at %></td>
+        <td><%= date site.updated_at %></td>
+        <td>
+          <div class="btn-group">
+            <%= link ( tag :span, class: "icon icon-edit" ),
+              to: site_path(@conn, :edit, site),
+              class: "btn btn-outline-primary btn-xs"
+            %>
+            <%= link ( tag :span, class: "icon icon-cross" ),
+              to: site_path(@conn, :delete, site),
+              method: :delete,
+              data: [confirm: "Are you sure you want to delete #{site.name}?"],
+              class: "btn btn-outline-danger btn-xs"
+            %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

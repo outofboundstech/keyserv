@@ -9,8 +9,9 @@ defmodule Keyserv.Mailman do
   def deliver(conn, _params=%{"fingerprint" => fingerprint, "content" => content}) do
     # Lookup email address by fingerprint
     key = Repo.get_by!(Key, fingerprint: fingerprint)
+    options = Application.get_env(:keyserv, :email)
 
-    mimeheaders = [ {"From", "cryptoform@marceloomens.com"}, {"Subject", "CryptoForm: new message notification"}, {"To", Key.as_phrase key}]
+    mimeheaders = [ {"From", Keyword.fetch!(options, :from)}, {"Subject", Keyword.fetch!(options, :subject)}, {"To", Key.as_phrase key}]
     payload = rfc3156_mimemail(mimeheaders, content)
     SMTP.send({"cryptoform@marceloomens.com", [key.email], payload}, Application.get_env(:keyserv, Keyserv.Mailman))
 
