@@ -39,10 +39,11 @@ defmodule Keyserv.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 4.0"},
-     {:bcrypt_elixir, "~> 0.12.0"},
-     {:poison, "~> 3.0", override: true},
+     {:bcrypt_elixir, "~> 1.0"},
+     {:timex, "~> 3.1"},
+     {:poison, "~> 3.0"},
      {:cors_plug, "~> 1.4"},
-     {:gen_smtp, "~> 0.12.0"},
+     {:gen_smtp, "~> 0.12"},
      {:distillery, "~> 1.5", runtime: false}]
   end
 

@@ -53,12 +53,16 @@ defmodule Keyserv.Web do
       import Keyserv.ErrorHelpers
       import Keyserv.Gettext
 
-      def date(%NaiveDateTime{day: day, month: month, year: year}) do
-        "#{day}/#{month}/#{year}"
+      def datetime(dt=%NaiveDateTime{}) do
+        Timex.format!(dt, "%-d %B %Y at %H:%M", :strftime)
       end
 
-      def time(%NaiveDateTime{hour: hour, minute: min, second: sec}) do
-        "#{hour}:#{min}.#{sec}"
+      def date(dt=%NaiveDateTime{}) do
+        Timex.format!(dt, "%-d %B %Y", :strftime)
+      end
+
+      def time(dt=%NaiveDateTime{}) do
+        Timex.format!(dt, "%H:%M", :strftime)
       end
     end
   end
