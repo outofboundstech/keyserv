@@ -20,7 +20,7 @@ config :keyserv, Keyserv.Endpoint,
   version: Mix.Project.config[:version]
 
 config :keyserv, Keyserv.Cors,
-  origin: ["https://keyserv.451labs.org", "https://www.451labs.org", "https://451labs.org"]
+  origin: ["https://keyserv.451labs.org", "https://451labs.org", "https://www.451labs.org", "https://beta.451labs.org", "https://www.freepressunlimited.org", "https://freepressunlimited.org"]
 
 # Do not print debug messages in production
 config :logger, level: :info
