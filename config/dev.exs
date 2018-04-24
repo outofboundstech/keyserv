@@ -43,7 +43,7 @@ config :keyserv, Keyserv.Repo,
   pool_size: 10
 
 config :keyserv, Keyserv.Cors,
-  origin: ["http://localhost:4000", "http://localhost:3333"]
+  origin: ["http://localhost:3333", "http://localhost:4000", "http://localhost:8000"]
 
 # Finally import the config/dev.secret.exs
 # which should be versioned separately.

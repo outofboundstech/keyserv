@@ -25,9 +25,17 @@
 
   <div class="form-group">
     <%= label f, :pub, "Public key", class: "control-label" %>
-    <%= textarea f, :pub, class: "form-control" %>
+    <%= textarea f, :pub, class: "form-control", rows: 10 %>
     <small id="keyHelp" class="form-text text-muted">Please use ASCII armored key format</small>
     <%= error_tag f, :pub %>
+  </div>
+
+  <div class="form-group form-check">
+    <%= label f, :default, class: "form-check-label" do %>
+      <%= checkbox f, :default, class: "form-check-input" %>
+      Selected by default
+    <% end %>
+    <%= error_tag f, :default %>
   </div>
 
   <div class="form-group">

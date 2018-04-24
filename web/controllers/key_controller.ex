@@ -43,7 +43,7 @@ defmodule Keyserv.KeyController do
       {:ok, key} ->
         conn
         |> put_flash(:success, "Key updated successfully.")
-        |> redirect(to: key_path(conn, :show, key))
+        |> redirect(to: key_path(conn, :index))
       {:error, changeset} ->
         render conn, "edit.html", defaults(conn, key: key, changeset: changeset)
     end
