@@ -18,8 +18,8 @@ defmodule Keyserv.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Keyserv, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin, :cors_plug, :gen_smtp]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :timex,
+                    :phoenix_ecto, :postgrex, :elixir_make, :bcrypt_elixir, :comeonin, :cors_plug, :gen_smtp]]
   end
 
   # Specifies which paths to compile per environment.
