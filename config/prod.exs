@@ -27,7 +27,8 @@ config :keyserv, Keyserv.Repo,
   ssl: true
 
 config :keyserv, Keyserv.Cors,
-  origin: ["https://keyserv.herokuapps.com", "https://keyserv.451labs.org", "https://beta.451labs.org", "https://www.451labs.org", "https://451labs.org", "https://www.freepressunlimited.org", "https://freepressunlimited.org"]
+  # Note that openpgp.451labs.org is a Github pages custom domain and cannot therefore support TLS/SSL (https)
+  origin: ["https://keyserv.herokuapps.com", "https://keyserv.451labs.org", "http://openpgp.451labs.org", "https://www.451labs.org", "https://451labs.org", "https://www.freepressunlimited.org", "https://freepressunlimited.org"]
 
 config :keyserv, :email,
   from: System.get_env("EMAIL_FROM"),
